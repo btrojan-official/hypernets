@@ -23,11 +23,12 @@ class HyperNetClassifier(nn.Module):
         mask = (torch.rand(self.num_weights, requires_grad=False) >= 0.5).int().to(self.device)
         hypernet_input = torch.randn(self.num_weights, requires_grad=True).to(self.device) * mask
         
-        hypernet_output = torch.relu(self.input_layer(hypernet_input))
+        hypernet_output = torch.relu(self.input_layer(hypernet_input.clone()))
         hypernet_output = torch.relu(self.hidden_1(hypernet_output))
         hypernet_output = torch.relu(self.hidden_2(hypernet_output))
         hypernet_output = self.output_layer(hypernet_output)
 
+        hypernet_output[mask] = hypernet_input[mask]
         weights = torch.reshape(hypernet_output, (self.input_size, self.output_size))
 
         return x @ weights
