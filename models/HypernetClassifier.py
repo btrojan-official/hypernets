@@ -20,8 +20,8 @@ class HyperNetClassifier(nn.Module):
     def forward(self, x):
         x = x.view(-1, 28 * 28)
 
-        mask = (torch.rand(self.num_weights, requires_grad=False) >= 0.5).int().to(self.device)
-        hypernet_input = torch.randn(self.num_weights, requires_grad=True).to(self.device) * mask
+        mask = (torch.rand(self.num_weights, requires_grad=False) >= 0.5).to(self.device)
+        hypernet_input = torch.randn(self.num_weights, requires_grad=True).to(self.device) * mask.int()
         
         hypernet_output = torch.relu(self.input_layer(hypernet_input.clone()))
         hypernet_output = torch.relu(self.hidden_1(hypernet_output))
