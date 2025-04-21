@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 
 class Classifier(nn.Module):
-    def __init__(self, input_size, output_size, zeroed_weights_fraction=0):
+    def __init__(self, input_size: int, output_size: int, zeroed_weights_fraction: float=0):
         super(Classifier, self).__init__()
         self.linear = nn.Linear(input_size, output_size, bias=False)
         self.zeroed_weights_fraction = zeroed_weights_fraction
@@ -10,7 +10,7 @@ class Classifier(nn.Module):
         self.zeroed_weight = None
         self.zeroed_weight_indices = None
 
-    def zero_out_weights(self, zeroed_weights):
+    def zero_out_weights(self, zeroed_weights: float):
         with torch.no_grad(): 
             weight = self.linear.weight
             num_elements = weight.numel()
@@ -33,7 +33,7 @@ class Classifier(nn.Module):
                 self.zeroed_weight_indices = None
                 self.zeroed_weight = None
 
-    def forward(self, x):
+    def forward(self, x: torch.Tensor):
         self.unzero_out_weights()
         self.zero_out_weights(self.zeroed_weights_fraction)
 

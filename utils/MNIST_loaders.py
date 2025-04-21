@@ -6,7 +6,7 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader, random_split
 
-def MNIST_loaders(validation_split = 0.2, batch_size = 64):
+def MNIST_loaders(validation_split: float = 0.2, batch_size: int = 64):
     transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize((0.1307,), (0.3081,))
