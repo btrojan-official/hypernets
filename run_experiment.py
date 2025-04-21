@@ -1,10 +1,12 @@
 def find_list_of_params(params: dict, list_type_params: list = []):
-    choosen_params = []
+    choosen_params = None
 
     for param in params.keys():
         if (param not in list_type_params and type(param) == list) \
             or (param in list_type_params and type(param[0]) == list):
-            choosen_params.append(param)
+            return param, params[param]
+            
+    return None, None
 # --- Hyperparameters (things you can easily change!) ---
 params = {
     "num_epochs": 5,
