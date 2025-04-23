@@ -108,8 +108,8 @@ params = {
     "output_size": 10,
 
     "learning_rate": 0.0001,
-    "optimizer": 'Adam',
-    "hidden_size": [[4048, 2024, 4048], [1024, 512, 1024], [256, 64, 256], [64, 16, 64]],
+    "optimizer": 'SGD',
+    "hidden_size": [256, 64, 256],
     "zeroed_weights_in_baseline": 0.5,
     "hypernet_ensemble_num": 3,
 }
@@ -123,7 +123,7 @@ choosen_param, param_list = find_list_of_params(params, list_type_params)
 
 if param_list is None:
     print("No list of parameters found...")
-    run_train_and_eval(params, device)
+    run_train_and_eval(params, device, "num_epochs")
 else:
     for param_value in param_list:
         params[choosen_param] = param_value
