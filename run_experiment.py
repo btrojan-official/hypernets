@@ -107,9 +107,9 @@ params = {
     "input_size": 28 * 28,
     "output_size": 10,
 
-    "learning_rate": [0.01, 0.001, 0.0001, 0.00001, 0.000001],
+    "learning_rate": 0.0001,
     "optimizer": 'Adam',
-    "hidden_size": [256, 64, 256],
+    "hidden_size": [[4048, 2024, 4048], [1024, 512, 1024], [256, 64, 256], [64, 16, 64]],
     "zeroed_weights_in_baseline": 0.5,
     "hypernet_ensemble_num": 3,
 }
