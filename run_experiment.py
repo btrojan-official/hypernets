@@ -59,7 +59,7 @@ def find_list_of_params(params: dict, list_type_params: list = []):
 
 def run_train_and_eval(params: dict, device: torch.device, choosen_param: str = None):
     model = Classifier(params["input_size"], params["output_size"], zeroed_weights_fraction=params["zeroed_weights_in_baseline"])
-    hypernet_model = HyperNetClassifier(params["input_size"], params["output_size"], hidden_sizes=params["hidden_size"], device=device)
+    hypernet_model = HyperNetClassifier(params["input_size"], params["output_size"], hidden_sizes=params["hidden_size"], device=device, ensemble_num=params["hypernet_ensemble_num"], use_previous_weights=params["hypernet_use_previous_weights"])
 
     if params["optimizer"] == 'SGD':
         optimizer = optim.SGD(model.parameters(), lr=params["learning_rate"], weight_decay=params["weight_decay"])
@@ -111,7 +111,8 @@ params = {
     "optimizer": 'SGD',
     "hidden_size": [256, 64, 256],
     "zeroed_weights_in_baseline": 0.5,
-    "hypernet_ensemble_num": 3,
+    "hypernet_ensemble_num": 1,
+    "hypernet_use_previous_weights": False
 }
 
 torch.manual_seed(params["random_seed"])
