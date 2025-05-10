@@ -16,7 +16,7 @@ def train(model: nn.Module, hypernet_model: nn.Module, train_loader: torch.utils
     
     total = 0
     
-    for batch_idx, (data, target) in enumerate(train_loader):
+    for _, (data, target) in enumerate(train_loader):
 
         optimizer.zero_grad()
         hypernet_optimizer.zero_grad()
