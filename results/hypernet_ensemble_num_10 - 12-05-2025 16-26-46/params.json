@@ -7,13 +7,14 @@
     "n_bins": 10,
     "input_size": 784,
     "output_size": 10,
-    "learning_rate": 0.0001,
-    "optimizer": "Adam",
+    "learning_rate": 0.0003,
+    "optimizer": "SGD",
     "hidden_size": [
         256,
         64,
         256
     ],
     "zeroed_weights_in_baseline": 0.5,
-    "hypernet_ensemble_num": 50
+    "hypernet_ensemble_num": 10,
+    "hypernet_use_previous_weights": false
 }
